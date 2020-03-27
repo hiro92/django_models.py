@@ -1,0 +1,34 @@
+1．作成したアプリのmodels.pyに下記を記入する。
+　　 class 任意のクラス名(models.Model):
+
+2. 続けてclassの中に取得したいデータの項目を作る。
+   Fieldの種類はサイト等で調べる。
+　　例　name = models.CharField(max_length=100)
+　　　　memo = models.TextField()
+
+3. migrationファイルを作成する為に下記を記入する。
+　　$ python3 manage.py makemigration
+
+   実行するとアプリフォルダのmigrationに「～～initial.py」のファイルができる。
+　「～～initial.py」を開くと先ほどmodels.pyで作成した項目とその管理するためのidができている。
+
+   migrationとはmodels.pyとデータベースをつなぐためのファイル。
+
+4．作成したmigrationファイルをデータベースに反映させる為に下記を記入する。
+   $ python3 manage.py migrate
+
+5．Djangoの管理画面を利用する為に下記を記入する。
+　 $ python3 manage.py createsuperuser
+
+   username、email、passwordの作成が求められるがusernameとpassだけ記入
+
+6．作成した管理画面のサーバーを起動の為下記を記入。
+　　$ python3 manage.py runserver
+
+7．管理画面で操作できるようにアプリの中の「admin.py」に下記を記入。
+　　例　from models import ~~~~~　　←　~~~~~はmodels.pyで記入したclass名
+　　　　admin.site.register(~~~~)　 ↲
+
+7．chromに「127.0.0.1:8000/admin/」と記入し管理画面を開き先ほど作成したusernameとpasswordを記入すると
+   管理画面にはいることができる。
+
